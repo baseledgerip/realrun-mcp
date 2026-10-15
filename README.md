@@ -1,5 +1,8 @@
 # RealRun MCP server
 
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/baseledgerip/realrun-mcp)
+
+
 Read-only lookups over [RealRun](https://realrun.baseledgerip.com)'s published, independent tests of AI models on everyday tasks (inbox triage, meeting scheduling, receipts). It lets an agent ask "which model should I use for task X?" and get scores and safety warnings back.
 
 ## Connect (remote, no install)
