@@ -1,0 +1,22 @@
+// End-to-end test with the official MCP client. Usage: node test/smoke.mjs [http-url]
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+const url = process.argv[2];
+const transport = url ? new StreamableHTTPClientTransport(new URL(url)) : new StdioClientTransport({ command: "node", args: ["src/stdio.mjs"] });
+const c = new Client({ name: "smoke", version: "1" });
+await c.connect(transport);
+let fails = 0; const ok = (n, cond) => { console.log((cond ? "PASS " : "FAIL ") + n); if (!cond) fails++; };
+const tools = (await c.listTools()).tools.map((t) => t.name);
+ok("tools listed: " + tools.join(","), ["list_tasks","get_scores","recommend_model","get_warnings"].every((t) => tools.includes(t)));
+const j = async (name, args) => JSON.parse((await c.callTool({ name, arguments: args })).content[0].text);
+ok("list_tasks has 3 tasks", (await j("list_tasks", {})).tasks.length === 3);
+ok("receipts top score 95.8", (await j("get_scores", { task: "receipts" })).scores[0].headline === 95.8);
+const r = await j("recommend_model", { task: "receipts", priority: "accuracy" });
+ok("receipts accuracy -> GPT-6.1 Sol", r.recommendation.model === "GPT-6.1 Sol");
+const rc = await j("recommend_model", { task: "inbox-triage", priority: "cost", include_subscription: false });
+ok("inbox cost never picks Grok 4.20 / Haiku: " + rc.recommendation.model, !["Grok 4.20","Claude Haiku"].includes(rc.recommendation.model));
+ok("scheduling warnings include Grok 4.20", (await j("get_warnings", { task: "meeting-scheduling" })).warnings.some((w) => w.model === "Grok 4.20"));
+const bad = await c.callTool({ name: "get_scores", arguments: { task: "nope" } });
+ok("bad task -> error", bad.isError === true);
+await c.close(); console.log(fails ? `${fails} FAILED` : "ALL PASSED"); process.exit(fails ? 1 : 0);
