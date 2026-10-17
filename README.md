@@ -1,5 +1,7 @@
 # RealRun MCP server
 
+<img src="assets/realrun-icon-400.png" alt="RealRun logo" width="96" height="96">
+
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/baseledgerip/realrun-mcp)
 
 
@@ -14,6 +16,12 @@ Streamable HTTP endpoint: `https://realrun.baseledgerip.com/mcp`
 ```
 
 Claude Code: `claude mcp add --transport http realrun https://realrun.baseledgerip.com/mcp`
+
+Cline: add this to `cline_mcp_settings.json` (keep `"type": "streamableHttp"`; without it Cline falls back to SSE and the connection fails). Full agent-readable steps: [llms-install.md](llms-install.md).
+
+```json
+{ "mcpServers": { "realrun": { "type": "streamableHttp", "url": "https://realrun.baseledgerip.com/mcp", "disabled": false, "autoApprove": [] } } }
+```
 
 ## Run locally (stdio)
 
