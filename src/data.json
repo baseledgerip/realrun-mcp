@@ -1,80 +1,568 @@
 {
-  "source": "RealRun (https://realrun.baseledgerip.com), independent tests by Base Ledger IP LLC",
-  "updated": "2026-10-14",
-  "note": "Scores reflect our tests on the dates shown, not a guarantee. Claude models ran on a Claude subscription, so they have no metered API cost. cost_tier is relative within a task (low/medium/high) from our run spend; 'subscription' = not metered.",
-  "tasks": [
+ "source": "RealRun (https://realrun.baseledgerip.com), independent tests by Base Ledger IP LLC",
+ "updated": "2026-10-15",
+ "note": "Scores reflect our tests on the dates shown, not a guarantee. Claude models ran on a Claude subscription, so they have no metered API cost. cost_tier is relative within a task (low/medium/high) from our run spend; 'subscription' = not metered.",
+ "tasks": [
+  {
+   "id": "inbox-triage",
+   "name": "Inbox triage (sort email into Act / Read later / Archive, catch scams)",
+   "tested": "2026-10",
+   "items": 80,
+   "items_detail": "50 main emails + 30 fresh held-back emails",
+   "models": 8,
+   "passes": "2+ per set",
+   "graded_answers": 1420,
+   "headline_metric": "Accuracy % on the 30 fresh held-back emails (mean of passes)",
+   "results_url": "https://realrun.baseledgerip.com/results/inbox-triage-2026-10.html",
+   "playbook": {
+    "name": "RealRun Inbox Triage Playbook (v3)",
+    "price_usd": 29,
+    "buy_url": "https://buy.stripe.com/cNi14g1gj9w71Ix6WjeAg00"
+   },
+   "scores": [
     {
-      "id": "inbox-triage",
-      "name": "Inbox triage (sort email into Act / Read later / Archive, catch scams)",
-      "tested": "2026-10",
-      "items": 80, "items_detail": "50 main emails + 30 fresh held-back emails", "models": 8, "passes": "2+ per set", "graded_answers": 1420,
-      "headline_metric": "Accuracy % on the 30 fresh held-back emails (mean of passes)",
-      "results_url": "https://realrun.baseledgerip.com/results/inbox-triage-2026-10",
-      "playbook": {"name": "RealRun Inbox Triage Playbook (v2)", "price_usd": 29, "buy_url": "https://buy.stripe.com/cNi14g1gj9w71Ix6WjeAg00"},
-      "scores": [
-        {"model": "GPT-6.1 Sol", "headline": 95.0, "main": 95.0, "cost_tier": "medium", "scam_failures": false},
-        {"model": "GPT-5.4 mini", "headline": 95.0, "main": 93.0, "cost_tier": "low", "scam_failures": false},
-        {"model": "Claude Opus", "headline": 94.4, "main": 96.0, "cost_tier": "subscription", "scam_failures": false},
-        {"model": "Claude Sonnet", "headline": 91.7, "main": 94.0, "cost_tier": "subscription", "scam_failures": false},
-        {"model": "Gemini 3.8 Flash", "headline": 91.1, "main": 94.0, "cost_tier": "low", "scam_failures": false},
-        {"model": "Grok 4.7", "headline": 90.0, "main": 92.0, "cost_tier": "high", "scam_failures": false},
-        {"model": "Grok 4.20", "headline": 86.7, "main": 92.0, "cost_tier": "low", "scam_failures": true},
-        {"model": "Claude Haiku", "headline": 85.6, "main": 86.0, "cost_tier": "subscription", "scam_failures": true}
-      ],
-      "warnings": [
-        {"model": "Claude Haiku", "level": "not_recommended", "text": "Filed scam emails (gift-card/payment requests) as Act in some passes, and its scores swung between passes."},
-        {"model": "Grok 4.20", "level": "not_recommended", "text": "Filed a scam email as Act on the fresh held-back set in both passes."}
-      ]
+     "model": "GPT-6.1 Sol",
+     "headline": 95.0,
+     "main": 95.0,
+     "cost_tier": "medium",
+     "scam_failures": false
     },
     {
-      "id": "meeting-scheduling",
-      "name": "Meeting scheduling (read a calendar + email thread, propose a valid time, draft a reply)",
-      "tested": "2026-10",
-      "items": 62, "items_detail": "42 main requests + 20 fresh held-back requests", "models": 8, "passes": "2+ per set", "graded_answers": 1116,
-      "headline_metric": "Valid-answer % on the 20 fresh held-back requests (mean of passes)",
-      "results_url": "https://realrun.baseledgerip.com/results/scheduling-2026-10",
-      "playbook": {"name": "RealRun Meeting Scheduling Playbook (v1)", "price_usd": 29, "buy_url": "https://buy.stripe.com/14A5kw8IL0ZBaf3dkHeAg01"},
-      "scores": [
-        {"model": "Gemini 3.8 Flash", "headline": 100.0, "main": 100.0, "cost_tier": "medium"},
-        {"model": "GPT-6.1 Sol", "headline": 100.0, "main": 100.0, "cost_tier": "medium"},
-        {"model": "Grok 4.7", "headline": 100.0, "main": 100.0, "cost_tier": "high"},
-        {"model": "Claude Opus", "headline": 100.0, "main": 100.0, "cost_tier": "subscription"},
-        {"model": "Claude Sonnet", "headline": 100.0, "main": 97.6, "cost_tier": "subscription"},
-        {"model": "Claude Haiku", "headline": 96.7, "main": 97.6, "cost_tier": "subscription"},
-        {"model": "GPT-5.4 mini", "headline": 90.0, "main": 97.6, "cost_tier": "low"},
-        {"model": "Grok 4.20", "headline": 41.7, "main": 36.5, "cost_tier": "low"}
-      ],
-      "notes": ["The top models hit the ceiling, so this test can't rank them against each other.", "No model failed a scam request or over-declined."],
-      "warnings": [
-        {"model": "Grok 4.20", "level": "not_recommended", "text": "Often proposed times over busy events while claiming they were free, and made time-zone errors."},
-        {"model": "GPT-5.4 mini", "level": "caution", "text": "On hard cases it sometimes booked over a busy event or offered a time when none worked. Check every time it proposes."}
-      ]
+     "model": "GPT-5.4 mini",
+     "headline": 95.0,
+     "main": 93.0,
+     "cost_tier": "low",
+     "scam_failures": false
     },
     {
-      "id": "receipts",
-      "name": "Receipts (extract vendor/date/total/tax/currency/payment, categorize, flag bad math, fake invoices and unreadable docs, find duplicates)",
-      "tested": "2026-10",
-      "items": 79, "items_detail": "59 main + 20 fresh held-back documents; 24 non-US, 15 degraded photos", "models": 8, "passes": "2+ per model", "graded_answers": 1501,
-      "headline_metric": "Headline score (field, category and flag accuracy, needs-human recall, minus 5 per severe error), mean of passes",
-      "results_url": "https://realrun.baseledgerip.com/receipts/",
-      "playbook": {"name": "Receipts AI Playbook", "price_usd": 29, "buy_url": "https://buy.stripe.com/dRm8wIaQTcIj1Ix1BZeAg02"},
-      "scores": [
-        {"model": "GPT-6.1 Sol", "headline": 95.8, "main": 95.4, "holdout": 97.0, "cost_tier": "medium", "severe_errors": "none"},
-        {"model": "Gemini 4 Argon", "headline": 93.6, "main": 93.4, "holdout": 96.2, "cost_tier": "medium", "severe_errors": "1 of 3 passes"},
-        {"model": "Claude Haiku", "headline": 92.8, "main": 92.6, "holdout": 95.5, "cost_tier": "subscription", "severe_errors": "1 of 3 passes"},
-        {"model": "GPT-6 Luna", "headline": 91.4, "main": 91.0, "holdout": 93.2, "cost_tier": "low", "severe_errors": "none"},
-        {"model": "Claude Opus", "headline": 89.7, "main": 89.7, "holdout": 95.2, "cost_tier": "subscription", "severe_errors": "both passes"},
-        {"model": "Gemini 3.5 Flash-Lite", "headline": 85.4, "main": 86.2, "holdout": 87.6, "cost_tier": "low", "severe_errors": "both passes"},
-        {"model": "Grok 4.7", "headline": 83.1, "main": 81.6, "holdout": 96.1, "cost_tier": "high", "severe_errors": "both passes"},
-        {"model": "Grok 4.3", "headline": 69.2, "main": 67.7, "holdout": 89.1, "cost_tier": "medium", "severe_errors": "every pass"}
-      ],
-      "notes": ["No model accepted a fake invoice.", "Every model scored lower on Indonesian receipts.", "Duplicates: all models perfect except Grok 4.3."],
-      "warnings": [
-        {"model": "Grok 4.3", "level": "not_recommended", "text": "Invented totals on unreadable receipts, severe errors in every pass, and wrong duplicate pairs."},
-        {"model": "Grok 4.7", "level": "caution", "text": "Less certain: its two passes differed by 7.6 points; most expensive model tested."},
-        {"model": "Gemini 4 Argon", "level": "caution", "text": "Inconsistent: high average but passes ranged 84.1-98.8."},
-        {"model": "Gemini 3.5 Flash-Lite", "level": "caution", "text": "Caught only a third of receipts whose math didn't add up."}
-      ]
+     "model": "Claude Opus",
+     "headline": 94.4,
+     "main": 96.0,
+     "cost_tier": "subscription",
+     "scam_failures": false
+    },
+    {
+     "model": "Claude Sonnet",
+     "headline": 91.7,
+     "main": 94.0,
+     "cost_tier": "subscription",
+     "scam_failures": false
+    },
+    {
+     "model": "Gemini 3.8 Flash",
+     "headline": 91.1,
+     "main": 94.0,
+     "cost_tier": "low",
+     "scam_failures": false
+    },
+    {
+     "model": "Grok 4.7",
+     "headline": 90.0,
+     "main": 92.0,
+     "cost_tier": "high",
+     "scam_failures": false
+    },
+    {
+     "model": "Grok 4.20",
+     "headline": 86.7,
+     "main": 92.0,
+     "cost_tier": "low",
+     "scam_failures": true
+    },
+    {
+     "model": "Claude Haiku",
+     "headline": 85.6,
+     "main": 86.0,
+     "cost_tier": "subscription",
+     "scam_failures": true
     }
-  ]
+   ],
+   "warnings": [
+    {
+     "model": "Claude Haiku",
+     "level": "not_recommended",
+     "text": "Filed scam emails (gift-card/payment requests) as Act in some passes, and its scores swung between passes."
+    },
+    {
+     "model": "Grok 4.20",
+     "level": "not_recommended",
+     "text": "Filed a scam email as Act on the fresh held-back set in both passes."
+    }
+   ]
+  },
+  {
+   "id": "meeting-scheduling",
+   "name": "Meeting scheduling (read a calendar + email thread, propose a valid time, draft a reply)",
+   "tested": "2026-10",
+   "items": 62,
+   "items_detail": "42 main requests + 20 fresh held-back requests",
+   "models": 8,
+   "passes": "2+ per set",
+   "graded_answers": 1116,
+   "headline_metric": "Valid-answer % on the 20 fresh held-back requests (mean of passes)",
+   "results_url": "https://realrun.baseledgerip.com/results/scheduling-2026-10.html",
+   "playbook": {
+    "name": "RealRun Meeting Scheduling Playbook (v2)",
+    "price_usd": 29,
+    "buy_url": "https://buy.stripe.com/14A5kw8IL0ZBaf3dkHeAg01"
+   },
+   "scores": [
+    {
+     "model": "Gemini 3.8 Flash",
+     "headline": 100.0,
+     "main": 100.0,
+     "cost_tier": "medium"
+    },
+    {
+     "model": "GPT-6.1 Sol",
+     "headline": 100.0,
+     "main": 100.0,
+     "cost_tier": "medium"
+    },
+    {
+     "model": "Grok 4.7",
+     "headline": 100.0,
+     "main": 100.0,
+     "cost_tier": "high"
+    },
+    {
+     "model": "Claude Opus",
+     "headline": 100.0,
+     "main": 100.0,
+     "cost_tier": "subscription"
+    },
+    {
+     "model": "Claude Sonnet",
+     "headline": 100.0,
+     "main": 97.6,
+     "cost_tier": "subscription"
+    },
+    {
+     "model": "Claude Haiku",
+     "headline": 96.7,
+     "main": 97.6,
+     "cost_tier": "subscription"
+    },
+    {
+     "model": "GPT-5.4 mini",
+     "headline": 90.0,
+     "main": 97.6,
+     "cost_tier": "low"
+    },
+    {
+     "model": "Grok 4.20",
+     "headline": 41.7,
+     "main": 36.5,
+     "cost_tier": "low"
+    }
+   ],
+   "notes": [
+    "The top models hit the ceiling, so this test can't rank them against each other.",
+    "No model failed a scam request or over-declined."
+   ],
+   "warnings": [
+    {
+     "model": "Grok 4.20",
+     "level": "not_recommended",
+     "text": "Often proposed times over busy events while claiming they were free, and made time-zone errors."
+    },
+    {
+     "model": "GPT-5.4 mini",
+     "level": "caution",
+     "text": "On hard cases it sometimes booked over a busy event or offered a time when none worked. Check every time it proposes."
+    }
+   ]
+  },
+  {
+   "id": "receipts",
+   "name": "Receipts (extract vendor/date/total/tax/currency/payment, categorize, flag bad math, fake invoices and unreadable docs, find duplicates)",
+   "tested": "2026-10",
+   "items": 79,
+   "items_detail": "59 main + 20 fresh held-back documents; 24 non-US, 15 degraded photos",
+   "models": 8,
+   "passes": "2+ per model",
+   "graded_answers": 1501,
+   "headline_metric": "Headline score (field, category and flag accuracy, needs-human recall, minus 5 per severe error), mean of passes",
+   "results_url": "https://realrun.baseledgerip.com/receipts/",
+   "playbook": {
+    "name": "Receipts AI Playbook",
+    "price_usd": 29,
+    "buy_url": "https://buy.stripe.com/dRm8wIaQTcIj1Ix1BZeAg02"
+   },
+   "scores": [
+    {
+     "model": "GPT-6.1 Sol",
+     "headline": 95.8,
+     "main": 95.4,
+     "holdout": 97.0,
+     "cost_tier": "medium",
+     "severe_errors": "none",
+     "us": 97.7,
+     "non_us_indonesian": 76.3
+    },
+    {
+     "model": "Gemini 4 Argon",
+     "headline": 93.6,
+     "main": 93.4,
+     "holdout": 96.2,
+     "cost_tier": "medium",
+     "severe_errors": "1 of 3 passes",
+     "us": 94.5,
+     "non_us_indonesian": 82.0
+    },
+    {
+     "model": "Claude Haiku",
+     "headline": 92.8,
+     "main": 92.6,
+     "holdout": 95.5,
+     "cost_tier": "subscription",
+     "severe_errors": "1 of 3 passes",
+     "us": 95.2,
+     "non_us_indonesian": 75.6
+    },
+    {
+     "model": "GPT-6 Luna",
+     "headline": 91.4,
+     "main": 91.0,
+     "holdout": 93.2,
+     "cost_tier": "low",
+     "severe_errors": "none",
+     "us": 96.0,
+     "non_us_indonesian": 72.3
+    },
+    {
+     "model": "Claude Opus",
+     "headline": 89.7,
+     "main": 89.7,
+     "holdout": 95.2,
+     "cost_tier": "subscription",
+     "severe_errors": "both passes",
+     "us": 91.8,
+     "non_us_indonesian": 77.0
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "headline": 85.4,
+     "main": 86.2,
+     "holdout": 87.6,
+     "cost_tier": "low",
+     "severe_errors": "both passes",
+     "us": 88.5,
+     "non_us_indonesian": 73.5
+    },
+    {
+     "model": "Grok 4.7",
+     "headline": 83.1,
+     "main": 81.6,
+     "holdout": 96.1,
+     "cost_tier": "high",
+     "severe_errors": "both passes",
+     "us": 84.6,
+     "non_us_indonesian": 77.4
+    },
+    {
+     "model": "Grok 4.3",
+     "headline": 69.2,
+     "main": 67.7,
+     "holdout": 89.1,
+     "cost_tier": "medium",
+     "severe_errors": "every pass",
+     "us": 76.8,
+     "non_us_indonesian": 52.7
+    }
+   ],
+   "notes": [
+    "No model accepted a fake invoice.",
+    "Every model scored lower on the 24 Indonesian receipts (e.g. GPT-6.1 Sol 97.7 on US vs 76.3 on Indonesian).",
+    "Duplicates: all models perfect except Grok 4.3."
+   ],
+   "warnings": [
+    {
+     "model": "Grok 4.3",
+     "level": "not_recommended",
+     "text": "Invented totals on unreadable receipts, severe errors in every pass, and wrong duplicate pairs."
+    },
+    {
+     "model": "Grok 4.7",
+     "level": "caution",
+     "text": "Less certain: its two passes differed by 7.6 points; most expensive model tested."
+    },
+    {
+     "model": "Gemini 4 Argon",
+     "level": "caution",
+     "text": "Inconsistent: high average but passes ranged 84.1-98.8."
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "level": "caution",
+     "text": "Caught only a third of receipts whose math didn't add up."
+    }
+   ]
+  },
+  {
+   "id": "finance",
+   "name": "Small-business finance (categorize bank exports, find bill problems and scams, check statements)",
+   "tested": "2026-10",
+   "items": 112,
+   "items_detail": "bank/card exports, bill histories and statements; main + fresh held-back sets",
+   "models": 8,
+   "passes": "2+ per model",
+   "graded_answers": 1992,
+   "headline_metric": "Overall: equal-weight mean of 3 parts. Each run (model x pass x part x set) is scored 0-100 by a weighted accuracy formula minus 5 per severe error in that run, floored at 0; a part averages main and held-back within each pass, then averages passes. severe_errors totals all passes and sets, so each counted error moves the overall by well under 5 points.",
+   "results_url": "https://realrun.baseledgerip.com/finance/",
+   "playbook": {
+    "name": "Finance AI Playbook",
+    "price_usd": 29,
+    "buy_url": "https://buy.stripe.com/5kQ14gf795fR3QF2G3eAg03"
+   },
+   "scores": [
+    {
+     "model": "GPT-6 Luna",
+     "headline": 96.3,
+     "main": 97.0,
+     "holdout": 95.6,
+     "cost_tier": "low",
+     "severe_errors": 0
+    },
+    {
+     "model": "Gemini 4 Argon",
+     "headline": 96.1,
+     "main": 96.0,
+     "holdout": 96.3,
+     "cost_tier": "medium",
+     "severe_errors": 0
+    },
+    {
+     "model": "GPT-6.1 Sol",
+     "headline": 96.0,
+     "main": 95.2,
+     "holdout": 96.8,
+     "cost_tier": "medium",
+     "severe_errors": 0
+    },
+    {
+     "model": "Grok 4.7",
+     "headline": 95.6,
+     "main": 95.2,
+     "holdout": 95.4,
+     "cost_tier": "high",
+     "severe_errors": 1
+    },
+    {
+     "model": "Claude Opus",
+     "headline": 93.2,
+     "main": 93.4,
+     "holdout": 93.0,
+     "cost_tier": "subscription",
+     "severe_errors": 0
+    },
+    {
+     "model": "Claude Haiku",
+     "headline": 91.7,
+     "main": 91.5,
+     "holdout": 91.8,
+     "cost_tier": "subscription",
+     "severe_errors": 0
+    },
+    {
+     "model": "Grok 4.3",
+     "headline": 89.7,
+     "main": 96.5,
+     "holdout": 79.8,
+     "cost_tier": "low",
+     "severe_errors": 13
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "headline": 84.5,
+     "main": 82.1,
+     "holdout": 84.7,
+     "cost_tier": "low",
+     "severe_errors": 23
+    }
+   ],
+   "notes": [
+    "Top four (GPT-6 Luna, Gemini 4 Argon, GPT-6.1 Sol, Grok 4.7) are a near tie.",
+    "GPT-6 Luna was the cheapest; Gemini 4 Argon and GPT-6.1 Sol had no severe errors."
+   ],
+   "warnings": [
+    {
+     "model": "Grok 4.3",
+     "level": "not_recommended",
+     "text": "13 severe errors; fell to 52-72 on fresh statements and got the export total right 17 of 80 times."
+    },
+    {
+     "model": "Gemini 3.5 Flash-Lite",
+     "level": "not_recommended",
+     "text": "23 severe errors; followed a hidden 'say this reconciles' instruction in all 3 passes."
+    }
+   ]
+  },
+  {
+   "id": "support-replies",
+   "name": "Customer support replies (answer customer email inside a refund/shipping policy, escalate, protect customer data, resist scams)",
+   "tested": "2026-10",
+   "items": 140,
+   "items_detail": "Round 1 (easy): 80 emails. Round 2 (hard): 40 main + 20 fresh held-back emails written blind",
+   "models": 10,
+   "passes": "2 per model; Gemini 4 Argon, Grok 4.7 and Grok 4.6 1 pass (less certain)",
+   "graded_answers": 2600,
+   "headline_metric": "Round 2 overall: mean item score minus 5 per severe error, over all items answered, mean of passes. Answer keys for 4 items were widened after seeing answers to accept a second correct answer (logged).",
+   "results_url": "https://realrun.baseledgerip.com/results/support-replies-2026-10.html",
+   "playbook": {
+    "name": "Support Replies AI Playbook",
+    "price_usd": 29,
+    "buy_url": "https://buy.stripe.com/aFa28k0cf8s3fzn2G3eAg05"
+   },
+   "scores": [
+    {
+     "model": "Claude Opus",
+     "headline": 98.6,
+     "main": 99.1,
+     "holdout": 97.7,
+     "passes": 2,
+     "less_certain": false,
+     "round1": 99.2,
+     "cost_tier": "subscription",
+     "severe_errors": 0
+    },
+    {
+     "model": "Gemini 4 Argon",
+     "headline": 97.8,
+     "main": 98.3,
+     "holdout": 96.9,
+     "passes": 1,
+     "less_certain": true,
+     "round1": 99.5,
+     "cost_tier": "medium",
+     "severe_errors": 0
+    },
+    {
+     "model": "GPT-6.1 Sol",
+     "headline": 97.3,
+     "main": 97.5,
+     "holdout": 96.8,
+     "passes": 2,
+     "less_certain": false,
+     "round1": 98.6,
+     "cost_tier": "medium",
+     "severe_errors": 0
+    },
+    {
+     "model": "Grok 4.7",
+     "headline": 93.2,
+     "main": 93.9,
+     "holdout": 96.8,
+     "passes": 1,
+     "less_certain": true,
+     "round1": 99.2,
+     "cost_tier": "high",
+     "severe_errors": 1
+    },
+    {
+     "model": "Gemini 3.8 Flash",
+     "headline": 90.6,
+     "main": 94.5,
+     "holdout": 90.2,
+     "passes": 2,
+     "less_certain": false,
+     "round1": 98.8,
+     "cost_tier": "low",
+     "severe_errors": 2
+    },
+    {
+     "model": "Claude Sonnet",
+     "headline": 89.4,
+     "main": 89.3,
+     "holdout": 97.2,
+     "passes": 2,
+     "less_certain": false,
+     "round1": 99.6,
+     "cost_tier": "subscription",
+     "severe_errors": 3
+    },
+    {
+     "model": "Grok 4.6",
+     "headline": 88.0,
+     "main": 88.0,
+     "passes": 1,
+     "less_certain": true,
+     "round1": 98.9,
+     "cost_tier": "high",
+     "severe_errors": 2
+    },
+    {
+     "model": "GPT-6 Luna",
+     "headline": 82.2,
+     "main": 83.1,
+     "holdout": 92.9,
+     "passes": 2,
+     "less_certain": false,
+     "round1": 98.9,
+     "cost_tier": "low",
+     "severe_errors": 5
+    },
+    {
+     "model": "Claude Haiku",
+     "headline": 80.5,
+     "main": 89.0,
+     "holdout": 85.9,
+     "passes": 2,
+     "less_certain": false,
+     "round1": 98.7,
+     "cost_tier": "subscription",
+     "severe_errors": 6
+    },
+    {
+     "model": "GPT-5.4 mini",
+     "headline": 68.0,
+     "main": 77.8,
+     "holdout": 83.6,
+     "passes": 2,
+     "less_certain": false,
+     "round1": 98.3,
+     "cost_tier": "low",
+     "severe_errors": 10
+    }
+   ],
+   "notes": [
+    "Round 1 (easy) was a tie: all 10 models scored 98.3-99.6.",
+    "Round 2: Claude Opus, Gemini 4 Argon and GPT-6.1 Sol made no severe errors.",
+    "7 models promised a wrong refund amount on the same case."
+   ],
+   "warnings": [
+    {
+     "model": "GPT-5.4 mini",
+     "level": "not_recommended",
+     "text": "Leaked another customer's data on 2 emails, promised wrong refund amounts and missed an escalation; 10 severe errors over 2 passes."
+    },
+    {
+     "model": "Claude Haiku",
+     "level": "caution",
+     "text": "Leaked another customer's data once and promised wrong refund amounts; 6 severe errors over 2 passes."
+    },
+    {
+     "model": "GPT-6 Luna",
+     "level": "caution",
+     "text": "Promised wrong refund amounts; 5 severe errors over 2 passes."
+    }
+   ]
+  }
+ ],
+ "bundles": [
+  {
+   "id": "bundle-all-five",
+   "name": "RealRun All-Five Playbook Bundle",
+   "price_usd": 99,
+   "saves_usd": 46,
+   "buy_url": "https://buy.stripe.com/dRmeV60cfdMndrfeoLeAg06",
+   "includes": [
+    "inbox-triage",
+    "meeting-scheduling",
+    "receipts",
+    "finance",
+    "support-replies"
+   ]
+  }
+ ]
 }
