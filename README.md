@@ -3,7 +3,7 @@
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/baseledgerip/realrun-mcp)
 
 
-Read-only lookups over [RealRun](https://realrun.baseledgerip.com)'s published, independent tests of AI models on everyday tasks (inbox triage, meeting scheduling, receipts). It lets an agent ask "which model should I use for task X?" and get scores and safety warnings back.
+Read-only lookups over [RealRun](https://realrun.baseledgerip.com)'s published, independent tests of AI models on everyday tasks (inbox triage, meeting scheduling, receipts, small-business finance, customer support replies). It lets an agent ask "which model should I use for task X?" and get scores and safety warnings back.
 
 ## Connect (remote, no install)
 
@@ -31,7 +31,7 @@ npx -y realrun-mcp
 | `recommend_model` | `task`, `priority` (`accuracy`/`cost`/`balanced`), `include_subscription` | One pick + 2 alternatives; never picks a model flagged not recommended |
 | `get_warnings` | `task` | Not-recommended and caution flags (scam failures, invented data, inconsistency) |
 
-Task ids: `inbox-triage`, `meeting-scheduling`, `receipts`.
+Task ids: `inbox-triage`, `meeting-scheduling`, `receipts`, `finance`, `support-replies`.
 
 All tools are read-only. The server stores nothing and has no auth. It is stateless, with JSON responses.
 
